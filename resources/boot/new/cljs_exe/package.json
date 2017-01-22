@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "nexe": "^1.1.2",
+    "source-map-support": "^0.4.10"
+  }
+}
