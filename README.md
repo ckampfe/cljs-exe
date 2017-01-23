@@ -8,6 +8,14 @@ application that will compile to a native binary using
 
 ## Create a new project
 
+If snapshot release:
+
+```
+$ boot -d seancorfield/boot-new new -S -t cljs-exe -n your-project-name
+```
+
+If regular release:
+
 ```
 $ boot -d seancorfield/boot-new new -t cljs-exe -n your-project-name
 ```
