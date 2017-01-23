@@ -21,7 +21,7 @@ nexe.compile({
     // resourceFiles: ["target"],
     // browserifyExcludes: "resources",
     resourceRoot: 'target/',
-    flags: false, // use this for applications that need command line flags.
+    flags: true, // use this for applications that need command line flags.
     jsFlags: [
       // '--use_strict',
       // '--prepare_always_opt',
