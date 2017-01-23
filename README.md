@@ -6,6 +6,18 @@ application that will compile to a native binary using
 
 [![Clojars Project](https://img.shields.io/clojars/v/cljs-exe.svg)](https://clojars.org/cljs-exe)
 
+## Motivation
+
+[nexe](https://github.com/nexe/nexe), on which this project is based, lists these reasons:
+
+- Ability to run multiple applications with different node.js runtimes.
+- Distributable binaries without needing node / npm.
+- Starts faster.
+- Lockdown specific application versions, and easily rollback.
+- Faster deployments.
+
+I'll second those and add: "In ClojureScript."
+
 ## Create a new project
 
 Install [boot](https://github.com/boot-clj/boot), then:
