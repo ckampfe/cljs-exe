@@ -1,4 +1,4 @@
-(ns boot.new.cljs-exe
+(ns leiningen.new.cljs-exe
   (:require [boot.new.templates :refer [renderer name-to-path ->files]]))
 
 (def render (renderer "cljs-exe"))
