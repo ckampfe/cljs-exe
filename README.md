@@ -13,13 +13,13 @@ Install [boot](https://github.com/boot-clj/boot), then:
 If snapshot release:
 
 ```
-$ boot -d seancorfield/boot-new new -S -t cljs-exe -n your-project-name
+$ boot -d boot/new new -S -t cljs-exe -n your-project-name
 ```
 
 If regular release:
 
 ```
-$ boot -d seancorfield/boot-new new -t cljs-exe -n your-project-name
+$ boot -d boot/new new -t cljs-exe -n your-project-name
 ```
 
 ## Configuration
