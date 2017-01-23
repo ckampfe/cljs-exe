@@ -1,4 +1,4 @@
-(def project 'cljs-exe/boot-template)
+(def project 'cljs-exe)
 (def version "0.1.0")
 
 (set-env! :resource-paths #{"resources" "src"}
@@ -6,6 +6,7 @@
           ;; :source-paths   #{"test"}
           :dependencies   '[[org.clojure/clojure "RELEASE"]
                             [seancorfield/boot-new "RELEASE"]
+                            [adzerk/bootlaces "0.1.13" :scope "test"]
                             [adzerk/boot-test "RELEASE" :scope "test"]])
 
 (task-options!
@@ -23,4 +24,7 @@
   (comp (pom) (jar) (install)))
 
 (require '[adzerk.boot-test :refer [test]]
-         '[boot.new :refer [new]])
+         '[boot.new :refer [new]]
+         '[adzerk.bootlaces :refer :all])
+
+(bootlaces! version)
