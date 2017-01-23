@@ -8,6 +8,8 @@ application that will compile to a native binary using
 
 ## Create a new project
 
+Install [boot](https://github.com/boot-clj/boot), then:
+
 If snapshot release:
 
 ```
