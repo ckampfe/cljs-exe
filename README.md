@@ -4,7 +4,7 @@ cljs-exe is a Boot template to create a Clojurescript
 application that will compile to a native binary using
 [nexe](https://github.com/nexe/nexe).
 
-[![Clojars Project](https://img.shields.io/clojars/v/cljs-exe.svg)](https://clojars.org/cljs-exe)
+[![Clojars Project](https://img.shields.io/clojars/v/cljs-exe/lein-template.svg)](https://clojars.org/cljs-exe/lein-template)
 
 ## Motivation
 
