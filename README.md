@@ -24,4 +24,4 @@ $ boot -d seancorfield/boot-new new -t cljs-exe -n your-project-name
 
 ## Configuration
 
-See generated project for full configuration information.
+See README.md in the generated project for full configuration information.
