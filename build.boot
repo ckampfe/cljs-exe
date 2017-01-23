@@ -1,5 +1,5 @@
 (def project 'cljs-exe)
-(def version "0.1.0")
+(def version "0.1.0-SNAPSHOT")
 
 (set-env! :resource-paths #{"resources" "src"}
           ;; uncomment this if you write tests for your template:
