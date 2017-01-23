@@ -1,4 +1,4 @@
-(def project 'cljs-exe)
+(def project 'cljs-exe/lein-template)
 (def version "0.1.0-SNAPSHOT")
 
 (set-env! :resource-paths #{"resources" "src"}
