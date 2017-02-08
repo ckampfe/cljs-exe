@@ -7,6 +7,7 @@
                  [com.cemerick/piggieback   "0.2.1"      :scope "test"]
                  [org.clojure/tools.nrepl   "0.2.12"     :scope "test"]
                  [weasel                    "0.7.0"      :scope "test"]
+                 [cljs-node-io              "0.5.0"]
                  [org.clojure/clojurescript "1.9.293"]
                  [org.clojure/core.async    "0.2.395"]
                  [org.clojure/tools.cli     "0.3.5"]])
