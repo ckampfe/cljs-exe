@@ -12,12 +12,24 @@
                  [org.clojure/core.async    "0.3.443"]
                  [org.clojure/tools.cli     "0.3.5"]])
 
+(def js-dependencies {:nexe "2.0.0-rc.11"})
+
 (require
  '[adzerk.boot-cljs      :refer [cljs]]
  '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]])
 
-(deftask build []
+(task-options! cljs {:compiler-options
+                     {:optimizations :none
+                      :target :nodejs
+                      :npm-deps js-dependencies
+                      :install-deps true
+                      :source-map true
+                      :hashbang false}})
+
+(deftask build
+  "compile cljs to js with default cljs compiler settings"
+  []
   (comp (speak)
         (cljs)
         (target :dir #{"target"})))
@@ -28,42 +40,32 @@
         (reload)
         (build)))
 
-(deftask production []
-  (task-options! cljs {:compiler-options
-                       {:optimizations :simple
-                        :target :nodejs
-                        :hashbang false}})
-  identity)
-
-(deftask development []
-  (task-options! cljs {:compiler-options
-                       {:optimizations :none
-                        :source-map true
-                        :target :nodejs
-                        :hashbang false}}
-                 reload {:on-jsload '{{name}}.core/-main})
+(deftask production
+  "adjust cljs compiler options for production"
+  []
+  (task-options! cljs (fn [opts]
+                        (-> opts
+                            (assoc-in [:compiler-options :optimizations]
+                                      :simple)
+                            (update-in [:compiler-options] dissoc :source-map))))
   identity)
 
 (deftask dev
-  "Simple alias to run application in development mode"
+  "watch and rebuild the project with development cljs presets"
   []
   (comp (watch)
-        (development)
         (build)))
 
-(deftask setup
-  "use yarn to fetch and install required nodejs dependencies"
-  []
-  ((sh "yarn")))
-
-(deftask release
-  "compile clojurescript to javascript with production settings"
-  []
-  (comp (production)
-        (build)))
-
-(deftask package
+(deftask binary
   "use nexe to package js into a binary"
   []
-  ((sh "node" "scripts/build.js")))
+  (with-pre-wrap fileset
+    ((sh "node" "scripts/build.js"))
+    (commit! fileset)))
 
+(deftask package
+  "compile clojurescript to javascript with production settings and output a native binary"
+  []
+  (comp (production)
+        (build)
+        (binary)))
