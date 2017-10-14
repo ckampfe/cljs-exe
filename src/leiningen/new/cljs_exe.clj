@@ -15,5 +15,4 @@
              ["build.boot"                       (render "build.boot"   data)]
              ["scripts/build.js"                 (render "build.js"     data)]
              ["src/cljs/{{sanitized}}/core.cljs" (render "core.cljs"    data)]
-             ["package.json"                     (render "package.json" data)]
-             ["yarn.lock"                        (render "yarn.lock"    data)])))
+             ["package.json"                     (render "package.json" data)])))

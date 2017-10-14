@@ -1,15 +1,15 @@
 (set-env!
  :source-paths    #{"src/cljs"}
  :resource-paths  #{"resources"}
- :dependencies '[[adzerk/boot-cljs          "2.0.0"  :scope "test"]
+ :dependencies '[[adzerk/boot-cljs          "2.1.4"  :scope "test"]
                  [adzerk/boot-cljs-repl     "0.3.3"  :scope "test"]
-                 [adzerk/boot-reload        "0.5.1"  :scope "test"]
-                 [com.cemerick/piggieback   "0.2.1"  :scope "test"]
+                 [adzerk/boot-reload        "0.5.2"  :scope "test"]
+                 [com.cemerick/piggieback   "0.2.2"  :scope "test"]
                  [org.clojure/tools.nrepl   "0.2.12" :scope "test"]
                  [weasel                    "0.7.0"  :scope "test"]
                  [cljs-node-io              "0.5.0"]
-                 [org.clojure/clojurescript "1.9.521"]
-                 [org.clojure/core.async    "0.3.442"]
+                 [org.clojure/clojurescript "1.9.946"]
+                 [org.clojure/core.async    "0.3.443"]
                  [org.clojure/tools.cli     "0.3.5"]])
 
 (require
@@ -31,14 +31,16 @@
 (deftask production []
   (task-options! cljs {:compiler-options
                        {:optimizations :simple
-                        :target :nodejs}})
+                        :target :nodejs
+                        :hashbang false}})
   identity)
 
 (deftask development []
   (task-options! cljs {:compiler-options
-                       {:optimizations :simple
+                       {:optimizations :none
                         :source-map true
-                        :target :nodejs}}
+                        :target :nodejs
+                        :hashbang false}}
                  reload {:on-jsload '{{name}}.core/-main})
   identity)
 
@@ -49,12 +51,19 @@
         (development)
         (build)))
 
-(deftask setup []
+(deftask setup
+  "use yarn to fetch and install required nodejs dependencies"
+  []
   ((sh "yarn")))
 
-(deftask package []
-  ((sh "node" "scripts/build.js")))
-
-(deftask release []
+(deftask release
+  "compile clojurescript to javascript with production settings"
+  []
   (comp (production)
         (build)))
+
+(deftask package
+  "use nexe to package js into a binary"
+  []
+  ((sh "node" "scripts/build.js")))
+
