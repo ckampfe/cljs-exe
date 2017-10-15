@@ -18,22 +18,28 @@ application that will compile to a native binary using
 
 I'll second those and add: "In ClojureScript."
 
-## Create a new project
+## Quickstart
 
-Install [boot](https://github.com/boot-clj/boot), then:
-
-If snapshot release:
-
-```
-$ boot -d boot/new new -S -t cljs-exe -n your-project-name
-```
-
-If regular release:
+You will need
+- [Boot](https://github.com/boot-clj/boot)
+- [NodeJS](https://nodejs.org/)
+- [Python](https://www.python.org/) somewhere on your path (it is an nexe dependency)
 
 ```
-$ boot -d boot/new new -t cljs-exe -n your-project-name
+$ brew install boot-clj
+$ boot -d boot/new new -S -t cljs-exe -n your_project_name
+$ cd your_project_name
+$ boot package
 ```
 
-## Configuration
+This will compile some sample Clojurescript code to Javascript, then compiling the Javascript to a native binary.
 
-See README.md in the generated project for full configuration information.
+## Tasks
+
+This project template gives you a few boot tasks:
+
+- `build`: runs the Clojurescript compiler with defaults that include: fetching npm dependencies that are listed in the `js-dependencies` var in `build.boot`, emitting source maps, and no compiler optimizations.
+- `dev`: runs `build` in a watch loop, rerunning `build` anytime you change a source file.
+- `binary`: compiles the current project Javascript into a native binary on your platform.
+- `package`: compiles Clojurescript to Javascript with `simple` compiler optimizations and no source maps, then compiles that Javascript to a native binary on your platform.
+
