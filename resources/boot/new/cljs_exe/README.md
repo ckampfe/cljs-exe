@@ -2,40 +2,20 @@
 
 ## Requirements
 
-- Boot
-- Yarn
-- Python >= 2.6 (for [nexe](https://github.com/nexe/nexe))
-
+- [Boot](https://github.com/boot-clj/boot)
+- [NodeJS](https://nodejs.org/)
+- [Python](https://www.python.org/) somewhere on your path (it is an nexe dependency)
 
 ## Usage
 
-Fetch node dependencies:
 
-```
-$ boot setup
-```
+This project template gives you a few boot tasks:
 
-Compile Clojurescript to Javascript:
+- `build`: runs the Clojurescript compiler with defaults that include: fetching npm dependencies that are listed in the `js-dependencies` var in `build.boot`, emitting source maps, and no compiler optimizations.
+- `dev`: runs `build` in a watch loop, rerunning `build` anytime you change a source file.
+- `binary`: compiles the current project Javascript into a native binary on your platform.
+- `package`: compiles Clojurescript to Javascript with `simple` compiler optimizations and no source maps, then compiles that Javascript to a native binary on your platform.
 
-```
-$ boot release
-```
-
-Compile Javascript to native executable:
-```
-$ boot package
-```
-
-Note: the first time you run `boot package`, `nexe` will download
-and compile V8 for your platform.
-This may take upwards of 20 minutes depending on your hardware.
-Subsequent compilations should be <10 seconds.
-
-Run the resulting binary:
-
-```
-$ ./target/out
-```
 
 ## Configuration
 
