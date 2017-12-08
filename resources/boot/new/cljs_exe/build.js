@@ -8,7 +8,7 @@ nexe.compile({
   resources: 'target/',
   flags: true, // use this for applications that need command line flags.
   snapshot: 'target/js/app.js',
-  nodeVersion: '8.7.0'
+  nodeVersion: '8.9.2'
 }, err => {
   if (err) {
     throw err;
